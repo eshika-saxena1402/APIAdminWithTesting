@@ -11,6 +11,6 @@ namespace coreApparelProjectAPI2.Models
         public string VendorName { get; set; }
         public string VendorEmail { get; set; }
         public long VendorPhoneNo { get; set; }
-        public virtual List<Product> Products { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

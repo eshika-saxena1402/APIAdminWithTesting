@@ -12,7 +12,7 @@ namespace ApperalStoreAPI.Tests
     {
         private ApplicationDbContext context;
         public static DbContextOptions<ApplicationDbContext> dbContextOptions { get; set; }
-        public static string connectionString = "Data Source=TRD-502;Initial Catalog=EshikaAPI;Integrated Security=True;";
+        public static string connectionString = "Data Source=TRD-502;Initial Catalog=OnlineApparelStoreDb;Integrated Security=True;";
         static BrandTestController()
         {
             dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>().
@@ -47,8 +47,8 @@ namespace ApperalStoreAPI.Tests
             Assert.IsType<OkObjectResult>(data);
             var okResult = data.Should().BeOfType<OkObjectResult>().Subject;
             var brand = okResult.Value.Should().BeAssignableTo<Brand>().Subject;
-            Assert.Equal("Nike", brand.BrandName);
-            Assert.Equal("Nike's Desc", brand.BrandDescription);
+            Assert.Equal("Addidas", brand.BrandName);
+            Assert.Equal("This is a addidas brand", brand.BrandDescription);
         }
         [Fact]
         public async void Task_GetUserById_Return_BadResquest()
@@ -64,8 +64,8 @@ namespace ApperalStoreAPI.Tests
             var controller = new BrandController(context);
             var brand = new Brand()
             {
-                BrandName="Nike",
-                BrandDescription="Nike Desc"
+                BrandName="Reebok",
+                BrandDescription="Reebok Desc"
             };
             var data = await controller.Post(brand);
             Assert.IsType<CreatedAtActionResult>(data);
@@ -76,8 +76,8 @@ namespace ApperalStoreAPI.Tests
             var controller = new BrandController(context);
             var brand = new Brand()
             {
-                BrandName = "Nike123456",
-                BrandDescription = "Nike Desc"
+                BrandName = "Reebok",
+                BrandDescription = "Reebok Desc"
             };
             var data = await controller.Post(brand);
             Assert.IsType<BadRequestResult>(data);
@@ -86,7 +86,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_DeleteBrand_Retun_OkResult()
         {
             var controller = new BrandController(context);
-            int id = 8;
+            int id = 6;
             var data = await controller.Delete(id);
             Assert.IsType<OkObjectResult>(data);
         }
@@ -110,12 +110,12 @@ namespace ApperalStoreAPI.Tests
         public async void Task_UpdateBrand_Return_OkResult()
         {
             var controller = new BrandController(context);
-            int BrandId = 1;
+            int BrandId = 6;
             var brand = new Brand()
             {
-                BrandId = 1,
-                BrandName = "Nike",
-                BrandDescription = "Nike''s Desc"
+                BrandId=6,
+                BrandName = "Reebok",
+                BrandDescription = "Reebok's Desc"
             };
             var data = await controller.Put(BrandId, brand);
             Assert.IsType<OkObjectResult>(data);
@@ -127,9 +127,9 @@ namespace ApperalStoreAPI.Tests
             int? id = null;
             var brand = new Brand()
             {
-                BrandId = 1,
-                BrandName = "Nike",
-                BrandDescription = "Nike''s Desc"
+                BrandId = 6,
+                BrandName = "Reebok",
+                BrandDescription = "Reebok's Desc"
             };
             var data = await controller.Put(id, brand);
             Assert.IsType<BadRequestResult>(data);
@@ -141,9 +141,9 @@ namespace ApperalStoreAPI.Tests
             var id = 10;
             var brand = new Brand()
             {
-                BrandId = 1,
-                BrandName = "Nike",
-                BrandDescription = "Nike''s Desc"
+                BrandId = 6,
+                BrandName = "Reebok",
+                BrandDescription = "Reebok's Desc"
             };
             var data = await controller.Put(id, brand);
             Assert.IsType<NotFoundResult>(data);

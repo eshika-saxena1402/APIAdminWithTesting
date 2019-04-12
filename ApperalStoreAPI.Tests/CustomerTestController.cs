@@ -14,7 +14,7 @@ namespace ApperalStoreAPI.Tests
     {
         private ApplicationDbContext context;
         public static DbContextOptions<ApplicationDbContext> dbContextOptions { get; set; }
-        public static string connectionString = "Data Source=TRD-502;Initial Catalog=EshikaAPI;Integrated Security=True;";
+        public static string connectionString = "Data Source=TRD-502;Initial Catalog=OnlineApparelStoreDb;Integrated Security=True;";
         static CustomerTestController()
         {
             dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>().
@@ -28,7 +28,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_Get_Return_OkResult()
         {
             var controller = new CustomerController(context);
-            var CustomerId = 6;
+            var CustomerId = 1;
             var data = await controller.Get(CustomerId);
             Assert.IsType<OkObjectResult>(data);
         }
@@ -36,7 +36,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_Get_Return_NotFoundResult()
         {
             var controller = new CustomerController(context);
-            var CustomerId = 8;
+            var CustomerId = 100;
             var data = await controller.Get(CustomerId);
             Assert.IsType<NotFoundResult>(data);
         }
@@ -44,13 +44,13 @@ namespace ApperalStoreAPI.Tests
         public async void Task_GetUserById_MatchResult()
         {
             var controller = new CustomerController(context);
-            int CustomerId = 6;
+            int CustomerId = 1;
             var data = await controller.Get(CustomerId);
             Assert.IsType<OkObjectResult>(data);
             var okResult = data.Should().BeOfType<OkObjectResult>().Subject;
             var cus = okResult.Value.Should().BeAssignableTo<Customer>().Subject;
-            Assert.Equal("Eshika", cus.CustomerName);
-            Assert.Equal("e@gmail.com", cus.Email);
+            Assert.Equal("Eshika", cus.CustomerFirstName);
+            Assert.Equal("eshika@gmail.com", cus.Email);
         }
         [Fact]
         public async void Task_GetCategoryById_Return_BadResquest()
@@ -61,16 +61,23 @@ namespace ApperalStoreAPI.Tests
             Assert.IsType<BadRequestResult>(data);
         }
         [Fact]
-        public async void Task_AddCategory_Return_OkResult()
+        public async void Task_Add_Return_OkResult()
         {
             var controller = new CustomerController(context);
             var cat = new Customer()
             {
-                CustomerName="Eshika",
-                Email="e@gmail.com",
-                PhoneNumber=12345,
-                Gender="Female",
-                Password="eshu"
+                CustomerFirstName = "Akash",
+                CustomerLastName = "Singh",
+                UserName = "Akki",
+                Email = "akash@gmail.com",
+                PhoneNumber = 9045712248,
+                AlternatePhoneNumber = 9411971345,
+                Address = "Sector-62",
+                State = "Uttar Pradesh",
+                Country = "India",
+                ZipCode = 14421,
+                Gender = "Male",
+                Password = "akash"
             };
             var data = await controller.Post(cat);
             Assert.IsType<CreatedAtActionResult>(data);
@@ -81,11 +88,18 @@ namespace ApperalStoreAPI.Tests
             var controller = new CustomerController(context);
             var cat = new Customer()
             {
-                CustomerName = "Eshikaaaaaaaaaaaaaa",
-                Email = "e@gmail.com",
-                PhoneNumber = 12345,
-                Gender = "Female",
-                Password = "eshu"
+                CustomerFirstName = "Akash",
+                CustomerLastName = "Singh",
+                UserName = "Akki",
+                Email = "akash@gmail.com",
+                PhoneNumber = 9045712248,
+                AlternatePhoneNumber = 9411971345,
+                Address = "Sector-62",
+                State = "Uttar Pradesh",
+                Country = "India",
+                ZipCode = 14421,
+                Gender = "Male",
+                Password = "akash"
             };
             var data = await controller.Post(cat);
             Assert.IsType<BadRequestResult>(data);
@@ -94,7 +108,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_DeleteCategory_Retun_OkResult()
         {
             var controller = new CustomerController(context);
-            int id = 6;
+            int id = 3;
             var data = await controller.Delete(id);
             Assert.IsType<OkObjectResult>(data);
         }
@@ -118,15 +132,22 @@ namespace ApperalStoreAPI.Tests
         public async void Task_UpdateCategory_Return_OkResult()
         {
             var controller = new CustomerController(context);
-            int CustomerId = 6;
+            int CustomerId = 4;
             var cat = new Customer()
             {
-                CustomerId = 6,
-                CustomerName = "Akash",
-                Email = "e@gmail.com",
-                PhoneNumber = 12345,
-                Gender = "Female",
-                Password = "eshu"
+                CustomerId=4,
+                CustomerFirstName = "Akash",
+                CustomerLastName = "Singh",
+                UserName = "Akki",
+                Email = "akash@gmail.com",
+                PhoneNumber = 9045712248,
+                AlternatePhoneNumber = 9411971345,
+                Address2 = "Sector-62",
+                State2 = "Uttar Pradesh",
+                Country2 = "India",
+                ZipCode2 = 14421,
+                Gender = "Male",
+                Password = "akash"
             };
             var data = await controller.Put(CustomerId, cat);
             Assert.IsType<OkObjectResult>(data);
@@ -138,12 +159,19 @@ namespace ApperalStoreAPI.Tests
             int? id = null;
             var cat = new Customer()
             {
-                CustomerId = 6,
-                CustomerName = "Eshikaaaaaaaaaaaaaa",
-                Email = "e@gmail.com",
-                PhoneNumber = 12345,
-                Gender = "Female",
-                Password = "eshu"
+                CustomerId=4,
+                CustomerFirstName = "Akash",
+                CustomerLastName = "Singh",
+                UserName = "Akki",
+                Email = "akash@gmail.com",
+                PhoneNumber = 9045712248,
+                AlternatePhoneNumber = 9411971345,
+                Address = "Sector-62",
+                State = "Uttar Pradesh",
+                Country = "India",
+                ZipCode = 14421,
+                Gender = "Male",
+                Password = "akash"
             };
             var data = await controller.Put(id, cat);
             Assert.IsType<BadRequestResult>(data);
@@ -155,12 +183,18 @@ namespace ApperalStoreAPI.Tests
             var id = 10;
             var cat = new Customer()
             {
-                CustomerId = 6,
-                CustomerName = "Eshikaaaaaaaaaaaaaa",
-                Email = "e@gmail.com",
-                PhoneNumber = 12345,
-                Gender = "Female",
-                Password = "eshu"
+                CustomerFirstName = "Akash",
+                CustomerLastName = "Singh",
+                UserName = "Akki",
+                Email = "akash@gmail.com",
+                PhoneNumber = 9045712248,
+                AlternatePhoneNumber = 9411971345,
+                Address = "Sector-62",
+                State = "Uttar Pradesh",
+                Country = "India",
+                ZipCode = 14421,
+                Gender = "Male",
+                Password = "akash"
             };
             var data = await controller.Put(id, cat);
             Assert.IsType<NotFoundResult>(data);

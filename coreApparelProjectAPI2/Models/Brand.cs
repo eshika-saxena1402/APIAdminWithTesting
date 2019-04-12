@@ -10,6 +10,6 @@ namespace coreApparelProjectAPI2.Models
         public int BrandId { get; set; }
         public string BrandName { get; set; }
         public string BrandDescription { get; set; }
-        public virtual List<Product> Products { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

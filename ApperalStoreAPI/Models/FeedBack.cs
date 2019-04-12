@@ -9,10 +9,9 @@ namespace ApperalStoreAPI.Models
 {
     public class FeedBack
     {
-        [Key]
         public int FeedBackId { get; set; }
         public int CustomerId { get; set; }
-        public string Message { get; set; }
         public Customer Customer { get; set; }
+        public string Message { get; set; }
     }
 }

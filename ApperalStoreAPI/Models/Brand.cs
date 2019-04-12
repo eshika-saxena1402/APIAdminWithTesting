@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 namespace ApperalStoreAPI.Models
 {
     public class Brand
-    {   
-            public int BrandId { get; set; }
-            public string BrandName { get; set; }
-            public string BrandDescription { get; set; }
-            public virtual List<Product> Products { get; set; }       
+    {
+        public int BrandId { get; set; }
+        public string BrandName { get; set; }
+        public string BrandDescription { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

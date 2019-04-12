@@ -14,7 +14,7 @@ namespace ApperalStoreAPI.Tests
     {
         private ApplicationDbContext context;
         public static DbContextOptions<ApplicationDbContext> dbContextOptions { get; set; }
-        public static string connectionString = "Data Source=TRD-502;Initial Catalog=EshikaAPI;Integrated Security=True;";
+        public static string connectionString = "Data Source=TRD-502;Initial Catalog=OnlineApparelStoreDb;Integrated Security=True;";
         static VendorTestController()
         {
             dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>().
@@ -49,7 +49,7 @@ namespace ApperalStoreAPI.Tests
             Assert.IsType<OkObjectResult>(data);
             var okResult = data.Should().BeOfType<OkObjectResult>().Subject;
             var cat = okResult.Value.Should().BeAssignableTo<Vendor>().Subject;
-            Assert.Equal("AKASH", cat.VendorName);
+            Assert.Equal("Eshika", cat.VendorName);
         }
         [Fact]
         public async void Task_GetById_Return_BadRequest()
@@ -65,9 +65,9 @@ namespace ApperalStoreAPI.Tests
             var controller = new VendorController(context);
             var user = new Vendor()
             {
-                VendorName = "AKASH",
-                VendorEmail = "AK@GMAIL.COM",
-                VendorPhoneNo = 98774522145
+                VendorName = "Eshika123",
+                VendorEmail = "e@gmail.com",
+                VendorPhoneNo = 7599437873
             };
             var data = await controller.Post(user);
             Assert.IsType<CreatedAtActionResult>(data);
@@ -78,9 +78,9 @@ namespace ApperalStoreAPI.Tests
             var controller = new VendorController(context);
             var user = new Vendor()
             {
-                VendorName = "AKASfdgfdvbfdvdbdfvH",
-                VendorEmail = "AK@GMAIL.COM",
-                VendorPhoneNo = 98774522145
+                VendorName = "Eshika123",
+                VendorEmail = "e@gmail.com",
+                VendorPhoneNo = 7599437873
             };
             var data = await controller.Post(user);
             Assert.IsType<BadRequestResult>(data);
@@ -89,7 +89,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_delete_Return_okResult()
         {
             var controller = new VendorController(context);
-            var id = 3;
+            var id = 5;
             var data = await controller.Delete(id);
             Assert.IsType<OkObjectResult>(data);
         }
@@ -115,15 +115,15 @@ namespace ApperalStoreAPI.Tests
         public async void Task_update_Return_ok()
         {
 
-            var id = 1;
+            var id = 2;
 
             var controller = new VendorController(context);
             var user = new Vendor()
             {
-                VendorId = 1,
+                VendorId=2,
                 VendorName = "Akash",
-                VendorEmail = "a@gmail.com",
-                VendorPhoneNo = 12345
+                VendorEmail = "akash@gmail.com",
+                VendorPhoneNo = 9411971385
             };
             var data1 = await controller.Put(id, user);
             Assert.IsType<OkObjectResult>(data1);
@@ -136,10 +136,10 @@ namespace ApperalStoreAPI.Tests
 
             var user = new Vendor()
             {
-                VendorId = 14,
-                VendorName = "Bislerasasi",
-                VendorEmail = "b@gmail.com",
-                VendorPhoneNo = 2131412
+                VendorId = 2,
+                VendorName = "Akash",
+                VendorEmail = "akash@gmail.com",
+                VendorPhoneNo = 9411971385
             };
             var data1 = await controller.Put(id, user);
             Assert.IsType<BadRequestResult>(data1);
@@ -151,10 +151,10 @@ namespace ApperalStoreAPI.Tests
             var id = 12;
             var user = new Vendor()
             {
-                VendorId = 14,
-                VendorName = "Bislerasasi",
-                VendorEmail = "b@gmail.com",
-                VendorPhoneNo = 2131412
+                VendorId = 2,
+                VendorName = "Akash",
+                VendorEmail = "akash@gmail.com",
+                VendorPhoneNo = 9411971385
             };
             var data = await controller.Put(id, user);
             Assert.IsType<NotFoundResult>(data);

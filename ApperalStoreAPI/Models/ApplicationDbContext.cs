@@ -67,8 +67,8 @@ namespace ApperalStoreAPI.Models
             });
             modelBuilder.Entity<Customer>(entity =>
             {
-                entity.Property(e => e.CustomerName)
-                .HasColumnName("CustomerName")
+                entity.Property(e => e.CustomerFirstName)
+                .HasColumnName("CustomerFirstName")
                 .HasMaxLength(6)
                 .IsUnicode(false);
             });

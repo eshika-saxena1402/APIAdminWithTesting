@@ -14,7 +14,7 @@ namespace ApperalStoreAPI.Tests
     {
         private ApplicationDbContext context;
         public static DbContextOptions<ApplicationDbContext> dbContextOptions { get; set; }
-        public static string connectionString = "Data Source=TRD-502;Initial Catalog=EshikaAPI;Integrated Security=True;";
+        public static string connectionString = "Data Source=TRD-502;Initial Catalog=OnlineApparelStoreDb;Integrated Security=True;";
         static OrderTestController()
         {
             dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>().
@@ -59,7 +59,7 @@ namespace ApperalStoreAPI.Tests
             var data = await controller.Get(id);
             Assert.IsType<BadRequestResult>(data);
         }
-        [Fact]
+       [Fact]
         public async void Task_Add_Return_OkRequest()
         {
             var controller = new OrderController(context);
@@ -67,7 +67,7 @@ namespace ApperalStoreAPI.Tests
             {
                 OrderAmount = 1000,
                 OrderDate = DateTime.Now,
-                CustomerId = 9
+                CustomerId = 2
             };
             var data = await controller.Post(user);
             Assert.IsType<CreatedAtActionResult>(data);
@@ -78,7 +78,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_delete_Return_okResult()
         {
             var controller = new OrderController(context);
-            var id = 3;
+            var id = 9;
             var data = await controller.Delete(id);
             Assert.IsType<OkObjectResult>(data);
         }
@@ -102,14 +102,14 @@ namespace ApperalStoreAPI.Tests
         [Fact]
         public async void Task_update_Return_ok()
         {
-            var id = 3;
+            var id = 1;
             var controller = new OrderController(context);
             var user = new Order()
             {
-                OrderId=3,
+                OrderId=1,
                 OrderAmount = 5000,
                 OrderDate = DateTime.Now,
-                CustomerId = 9
+                CustomerId = 2
             };
             var data1 = await controller.Put(id, user);
             Assert.IsType<OkObjectResult>(data1);
@@ -123,7 +123,7 @@ namespace ApperalStoreAPI.Tests
             {
                 OrderAmount = 5000,
                 OrderDate = DateTime.Now,
-                CustomerId = 9
+                CustomerId = 2
             };
             var data1 = await controller.Put(id, user);
             Assert.IsType<BadRequestResult>(data1);
@@ -137,7 +137,7 @@ namespace ApperalStoreAPI.Tests
             {
                 OrderAmount = 5000,
                 OrderDate = DateTime.Now,
-                CustomerId = 9
+                CustomerId = 2
             };
             var data = await controller.Put(id, user);
             Assert.IsType<NotFoundResult>(data);

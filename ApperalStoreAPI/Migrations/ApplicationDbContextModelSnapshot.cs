@@ -61,10 +61,22 @@ namespace ApperalStoreAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CustomerName")
-                        .HasColumnName("CustomerName")
+                    b.Property<string>("Address");
+
+                    b.Property<string>("Address2");
+
+                    b.Property<long>("AlternatePhoneNumber");
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("Country2");
+
+                    b.Property<string>("CustomerFirstName")
+                        .HasColumnName("CustomerFirstName")
                         .HasMaxLength(6)
                         .IsUnicode(false);
+
+                    b.Property<string>("CustomerLastName");
 
                     b.Property<string>("Email");
 
@@ -73,6 +85,18 @@ namespace ApperalStoreAPI.Migrations
                     b.Property<string>("Password");
 
                     b.Property<long>("PhoneNumber");
+
+                    b.Property<bool>("SameAddress");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("State2");
+
+                    b.Property<string>("UserName");
+
+                    b.Property<int>("ZipCode");
+
+                    b.Property<int>("ZipCode2");
 
                     b.HasKey("CustomerId");
 
@@ -111,13 +135,9 @@ namespace ApperalStoreAPI.Migrations
 
                     b.Property<DateTime>("OrderDate");
 
-                    b.Property<int?>("ProductId");
-
                     b.HasKey("OrderId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Orders");
                 });
@@ -209,10 +229,6 @@ namespace ApperalStoreAPI.Migrations
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ApperalStoreAPI.Models.Product")
-                        .WithMany("Orders")
-                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("ApperalStoreAPI.Models.OrderProduct", b =>
@@ -223,7 +239,7 @@ namespace ApperalStoreAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ApperalStoreAPI.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("OrderProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -14,7 +14,7 @@ namespace ApperalStoreAPI.Tests
     {
         private ApplicationDbContext context;
         public static DbContextOptions<ApplicationDbContext> dbContextOptions { get; set; }
-        public static string connectionString = "Data Source=TRD-502;Initial Catalog=EshikaAPI;Integrated Security=True;";
+        public static string connectionString = "Data Source=TRD-502;Initial Catalog=OnlineApparelStoreDb;Integrated Security=True;";
         static FeedBackTestController()
         {
             dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>().
@@ -49,7 +49,7 @@ namespace ApperalStoreAPI.Tests
             Assert.IsType<OkObjectResult>(data);
             var okResult = data.Should().BeOfType<OkObjectResult>().Subject;
             var brand = okResult.Value.Should().BeAssignableTo<FeedBack>().Subject;
-            Assert.Equal("This is a good work", brand.Message);
+            Assert.Equal("good one", brand.Message);
         }
         [Fact]
         public async void Task_GetById_Return_BadRequest()
@@ -66,7 +66,7 @@ namespace ApperalStoreAPI.Tests
             var user = new FeedBack()
             {
                Message="Awesome",
-               CustomerId=8
+               CustomerId=1
             };
             var data = await controller.Post(user);
             Assert.IsType<CreatedAtActionResult>(data);
@@ -77,7 +77,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_delete_Return_okResult()
         {
             var controller = new FeedBackController(context);
-            var id = 3;
+            var id = 2;
             var data = await controller.Delete(id);
             Assert.IsType<OkObjectResult>(data);
         }
@@ -101,13 +101,13 @@ namespace ApperalStoreAPI.Tests
         [Fact]
         public async void Task_update_Return_ok()
         {
-            var id = 3;
+            var id = 2;
             var controller = new FeedBackController(context);
             var user = new FeedBack()
             {
-                FeedBackId=3,
+                FeedBackId=2,
                 Message = "Awesome Blosoom",
-                CustomerId = 8
+                CustomerId = 1
             };
             var data1 = await controller.Put(id, user);
             Assert.IsType<OkObjectResult>(data1);
@@ -119,8 +119,9 @@ namespace ApperalStoreAPI.Tests
             int? id = null;
             var user = new FeedBack()
             {
-                Message = "Awesome",
-                CustomerId = 8
+                FeedBackId = 2,
+                Message = "Awesome Blosoom",
+                CustomerId = 1
             };
             var data1 = await controller.Put(id, user);
             Assert.IsType<BadRequestResult>(data1);
@@ -132,8 +133,9 @@ namespace ApperalStoreAPI.Tests
             var id = 12;
             var user = new FeedBack()
             {
-                Message = "Awesome",
-                CustomerId = 8
+                FeedBackId = 2,
+                Message = "Awesome Blosoom",
+                CustomerId = 1
             };
             var data = await controller.Put(id, user);
             Assert.IsType<NotFoundResult>(data);

@@ -14,7 +14,7 @@ namespace ApperalStoreAPI.Tests
     {
         private ApplicationDbContext context;
         public static DbContextOptions<ApplicationDbContext> dbContextOptions { get; set; }
-        public static string connectionString = "Data Source=TRD-502;Initial Catalog=EshikaAPI;Integrated Security=True;";
+        public static string connectionString = "Data Source=TRD-502;Initial Catalog=OnlineApparelStoreDb;Integrated Security=True;";
         static CategoryTestController()
         {
             dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>().
@@ -28,7 +28,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_Get_Return_OkResult()
         {
             var controller = new CategoryController(context);
-            var CategoryId = 5;
+            var CategoryId = 1;
             var data = await controller.Get(CategoryId);
             Assert.IsType<OkObjectResult>(data);
         }
@@ -36,7 +36,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_Get_Return_NotFoundResult()
         {
             var controller = new CategoryController(context);
-            var CategoryId = 8;
+            var CategoryId = 100;
             var data = await controller.Get(CategoryId);
             Assert.IsType<NotFoundResult>(data);
         }
@@ -49,8 +49,8 @@ namespace ApperalStoreAPI.Tests
             Assert.IsType<OkObjectResult>(data);
             var okResult = data.Should().BeOfType<OkObjectResult>().Subject;
             var cat = okResult.Value.Should().BeAssignableTo<Category>().Subject;
-            Assert.Equal("Shoes",cat.CategoryName);
-            Assert.Equal("Shoes Desc",cat.CategoryDescription);
+            Assert.Equal("watch", cat.CategoryName);
+            Assert.Equal("this is a watch ", cat.CategoryDescription);
         }
         [Fact]
         public async void Task_GetCategoryById_Return_BadResquest()
@@ -66,8 +66,8 @@ namespace ApperalStoreAPI.Tests
             var controller = new CategoryController(context);
             var cat = new Category()
             {
-                CategoryName = "Rings",
-                CategoryDescription = "Rings Desc"
+                CategoryName = "Brochure",
+                CategoryDescription = "Brochure Desc"
             };
             var data = await controller.Post(cat);
             Assert.IsType<CreatedAtActionResult>(data);
@@ -78,8 +78,8 @@ namespace ApperalStoreAPI.Tests
             var controller = new CategoryController(context);
             var cat = new Category()
             {
-                CategoryName = "Ringgggggggggggggggg",
-                CategoryDescription = "Rings Desc"
+                CategoryName = "Brochure",
+                CategoryDescription = "Brochure Desc"
             };
             var data = await controller.Post(cat);
             Assert.IsType<BadRequestResult>(data);
@@ -88,7 +88,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_DeleteCategory_Retun_OkResult()
         {
             var controller = new CategoryController(context);
-            int id = 3;
+            int id = 7;
             var data = await controller.Delete(id);
             Assert.IsType<OkObjectResult>(data);
         }
@@ -112,12 +112,12 @@ namespace ApperalStoreAPI.Tests
         public async void Task_UpdateCategory_Return_OkResult()
         {
             var controller = new CategoryController(context);
-            int CategoryId = 5;
+            int CategoryId = 7;
             var cat = new Category()
             {
-                CategoryId = 5,
-               CategoryName = "Wallet",
-                CategoryDescription = "Wallet Desc"
+                CategoryId=7,
+                CategoryName = "Brochure",
+                CategoryDescription = "Brochure Description"
             };
             var data = await controller.Put(CategoryId, cat);
             Assert.IsType<OkObjectResult>(data);
@@ -129,9 +129,9 @@ namespace ApperalStoreAPI.Tests
             int? id = null;
             var cat = new Category()
             {
-                CategoryId=4,
-                CategoryName = "Wallet",
-                CategoryDescription = "Wallet Desc"
+                CategoryId = 7,
+                CategoryName = "Brochure",
+                CategoryDescription = "Brochure Description"
             };
             var data = await controller.Put(id, cat);
             Assert.IsType<BadRequestResult>(data);
@@ -143,9 +143,9 @@ namespace ApperalStoreAPI.Tests
             var id = 10;
             var cat = new Category()
             {
-                CategoryId = 4,
-                CategoryName = "Wallet",
-                CategoryDescription = "Wallet Desc"
+                CategoryId = 7,
+                CategoryName = "Brochure",
+                CategoryDescription = "Brochure Description"
             };
             var data = await controller.Put(id, cat);
             Assert.IsType<NotFoundResult>(data);

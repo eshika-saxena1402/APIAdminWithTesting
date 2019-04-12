@@ -15,12 +15,13 @@ namespace coreApparelProjectAPI2.Models
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            String ConString = "Data Source= TRD-502; Initial Catalog=DbApiClient; Integrated Security=True;";
+            String ConString = "Data Source= TRD-502; Initial Catalog=OnlineApparelStoreDb; Integrated Security=True;";
             optionsBuilder.UseSqlServer(ConString);
         }
      

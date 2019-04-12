@@ -14,10 +14,13 @@ namespace coreApparelProjectAPI2.Models
         public int ProductQuantity { get; set; }
         public string ProductSize { get; set; }
         public string ProductDescription { get; set; }
-        public virtual Brand Brand { get; set; }
-        public virtual Category Category { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        public int VendorId { get; set; }
+        public Vendor Vendor { get; set; }
+        public int BrandId { get; set; }
+        public Brand Brand { get; set; }
+        public List<OrderProduct> OrderProducts { get; set; }
 
-        public virtual Vendor Vendor { get; set; }
-        public virtual List<Order> Orders { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace ApperalStoreAPI.Tests
     {
         private ApplicationDbContext context;
         public static DbContextOptions<ApplicationDbContext> dbContextOptions { get; set; }
-        public static string connectionString = "Data Source=TRD-502;Initial Catalog=EshikaAPI;Integrated Security=True;";
+        public static string connectionString = "Data Source=TRD-502;Initial Catalog=OnlineApparelStoreDb;Integrated Security=True;";
         static ProductTestController()
         {
             dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>().
@@ -49,7 +49,8 @@ namespace ApperalStoreAPI.Tests
             Assert.IsType<OkObjectResult>(data);
             var okResult = data.Should().BeOfType<OkObjectResult>().Subject;
             var brand = okResult.Value.Should().BeAssignableTo<Product>().Subject;
-            Assert.Equal("Shoes", brand.ProductName);
+            Assert.Equal("Wallet for men", brand.ProductName);
+            Assert.Equal("this is a wallet for men", brand.ProductDescription);        
         }
         [Fact]
         public async void Task_GetById_Return_BadRequest()
@@ -65,14 +66,14 @@ namespace ApperalStoreAPI.Tests
             var controller = new ProductController(context);
             var user = new Product()
             {
-                ProductName = "Shoes",
-                ProductPrice = 500,
+                ProductName = "Blazer brochure",
+                ProductPrice = 200,
                 ProductQuantity = 100,
-                ProductImage = "https://m.media-amazon.com/images/I/61QR+gJCbWL._AC_UL320_.jpg",
-                ProductDescription = "this is a shoe",
-                CategoryId = 4,
-                VendorId = 1,
-                BrandId = 1,
+                ProductImage = "https://m.media-amazon.com/images/I/81I+hKzVLSL._AC_UL320_.jpg",
+                ProductDescription = "this is a blazer batch",
+                CategoryId = 7,
+                VendorId = 4,
+                BrandId = 3,
                 ProductSize = "S"
             };
             var data = await controller.Post(user);
@@ -84,7 +85,7 @@ namespace ApperalStoreAPI.Tests
         public async void Task_delete_Return_okResult()
         {
             var controller = new ProductController(context);
-            var id = 2;
+            var id = 8;
             var data = await controller.Delete(id);
             Assert.IsType<OkObjectResult>(data);
         }
@@ -109,20 +110,20 @@ namespace ApperalStoreAPI.Tests
         public async void Task_update_Return_ok()
         {
 
-            var id = 2;
+            var id = 8;
 
             var controller = new ProductController(context);
             var user = new Product()
             {
-                ProductId=2,
-                ProductName = "Shoes",
-                ProductPrice = 1000,
+                ProductId=8,
+                ProductName = "Blazer brochure",
+                ProductPrice = 200,
                 ProductQuantity = 100,
-                ProductImage = "https://m.media-amazon.com/images/I/61QR+gJCbWL._AC_UL320_.jpg",
-                ProductDescription = "this is a shoe",
-                CategoryId = 4,
-                VendorId = 1,
-                BrandId = 1,
+                ProductImage = "https://m.media-amazon.com/images/I/81I+hKzVLSL._AC_UL320_.jpg",
+                ProductDescription = "this is a blazer batch",
+                CategoryId = 7,
+                VendorId = 4,
+                BrandId = 3,
                 ProductSize = "S"
             };
             var data1 = await controller.Put(id, user);
@@ -136,14 +137,14 @@ namespace ApperalStoreAPI.Tests
 
             var user = new Product()
             {
-                ProductName = "Shoes",
-                ProductPrice = 1000,
+                ProductName = "Blazer brochure",
+                ProductPrice = 200,
                 ProductQuantity = 100,
-                ProductImage = "https://m.media-amazon.com/images/I/61QR+gJCbWL._AC_UL320_.jpg",
-                ProductDescription = "this is a shoe",
-                CategoryId = 4,
-                VendorId = 1,
-                BrandId = 1,
+                ProductImage = "https://m.media-amazon.com/images/I/81I+hKzVLSL._AC_UL320_.jpg",
+                ProductDescription = "this is a blazer batch",
+                CategoryId = 7,
+                VendorId = 4,
+                BrandId = 3,
                 ProductSize = "S"
             };
             var data1 = await controller.Put(id, user);
@@ -156,14 +157,14 @@ namespace ApperalStoreAPI.Tests
             var id = 12;
             var user = new Product()
             {
-                ProductName = "Shoes",
-                ProductPrice = 1000,
+                ProductName = "Blazer brochure",
+                ProductPrice = 200,
                 ProductQuantity = 100,
-                ProductImage = "https://m.media-amazon.com/images/I/61QR+gJCbWL._AC_UL320_.jpg",
-                ProductDescription = "this is a shoe",
-                CategoryId = 4,
-                VendorId = 1,
-                BrandId = 1,
+                ProductImage = "https://m.media-amazon.com/images/I/81I+hKzVLSL._AC_UL320_.jpg",
+                ProductDescription = "this is a blazer batch",
+                CategoryId = 7,
+                VendorId = 4,
+                BrandId = 3,
                 ProductSize = "S"
             };
             var data = await controller.Put(id, user);

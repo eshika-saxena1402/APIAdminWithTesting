@@ -42,11 +42,23 @@ namespace ApperalStoreAPI.Migrations
                 {
                     CustomerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CustomerName = table.Column<string>(unicode: false, maxLength: 6, nullable: true),
+                    CustomerFirstName = table.Column<string>(unicode: false, maxLength: 6, nullable: true),
+                    CustomerLastName = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    Address2 = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    Country2 = table.Column<string>(nullable: true),
+                    State2 = table.Column<string>(nullable: true),
+                    ZipCode = table.Column<int>(nullable: false),
+                    ZipCode2 = table.Column<int>(nullable: false),
+                    SameAddress = table.Column<bool>(nullable: false),
                     PhoneNumber = table.Column<long>(nullable: false),
+                    AlternatePhoneNumber = table.Column<long>(nullable: false),
                     Gender = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true)
+                    Password = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,6 +101,27 @@ namespace ApperalStoreAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    OrderDate = table.Column<DateTime>(nullable: false),
+                    OrderAmount = table.Column<double>(unicode: false, maxLength: 6, nullable: false),
+                    CustomerId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
+                    table.ForeignKey(
+                        name: "FK_Orders_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -100,9 +133,9 @@ namespace ApperalStoreAPI.Migrations
                     ProductQuantity = table.Column<int>(nullable: false),
                     ProductSize = table.Column<string>(nullable: true),
                     ProductDescription = table.Column<string>(nullable: true),
-                    BrandId = table.Column<int>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
-                    VendorId = table.Column<int>(nullable: false)
+                    VendorId = table.Column<int>(nullable: false),
+                    BrandId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,34 +158,6 @@ namespace ApperalStoreAPI.Migrations
                         principalTable: "Vendors",
                         principalColumn: "VendorId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    OrderId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    OrderDate = table.Column<DateTime>(nullable: false),
-                    OrderAmount = table.Column<double>(unicode: false, maxLength: 6, nullable: false),
-                    CustomerId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.OrderId);
-                    table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Orders_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -196,11 +201,6 @@ namespace ApperalStoreAPI.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_ProductId",
-                table: "Orders",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
                 table: "Products",
                 column: "BrandId");
@@ -228,10 +228,10 @@ namespace ApperalStoreAPI.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "Brands");
