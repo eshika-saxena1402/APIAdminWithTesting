@@ -1,0 +1,47 @@
+﻿@model coreApparelProjectAPI2.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Create new Customer</h2>
+
+<hr />
+<div class="row">
+    <div class="col-lg-4">
+        &nbsp;
+    </div>
+    <div class="col-lg-4">
+        <form asp-action="Create" asp-controller="Customer">
+            <div class="form-group">
+                <input type="hidden" asp-for="CustomerId" />
+                <br />
+                <label for="CustomerName">CustomerName</label>
+                <input type="text" class="form-control" placeholder="Enter Product Name" asp-for="CustomerName">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="text" class="form-control" placeholder="Price" asp-for="Email">
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber">PhoneNumber</label>
+                <input type="text" class="form-control" placeholder="Image" asp-for="PhoneNumber">
+            </div>
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                <input type="text" class="form-control" placeholder="Quantity" asp-for="Gender">
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="text" class="form-control" placeholder="Size" asp-for="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-controller="Customer" asp-action="Index"><button type="submit" class="btn btn-primary">BackToList</button></a>
+        </form>
+    </div>
+    <div class="col-lg-4">
+        &nbsp;
+    </div>
+</div>
+

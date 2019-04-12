@@ -1,0 +1,54 @@
+﻿@model IEnumerable<coreApparelProjectAPI2.Models.Brand>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Brands</h2>
+
+
+<p>
+    <a asp-action="Create">Add New Brand</a>
+</p>
+<table class="table table-info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandDescription)
+            </td>
+            <td>
+                <a asp-controller="Brand" asp-action="Details" asp-route-id="@item.BrandId"><button type="button" class="btn btn-light">Details</button></a>||
+                <a asp-controller="Brand" asp-action="Edit" asp-route-id="@item.BrandId"><button type="button" class="btn btn-light">Edit</button></a>||
+                <a asp-controller="Brand" asp-action="Delete" asp-route-id="@item.BrandId"><button type="button" class="btn btn-light">Delete</button></a>
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BrandId })||
+                @Html.ActionLink("Delete", "Delete", new { id = item.BrandId })||
+                @Html.ActionLink("Details", "Details", new { id = item.BrandId })
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

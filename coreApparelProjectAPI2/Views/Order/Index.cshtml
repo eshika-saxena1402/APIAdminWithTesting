@@ -1,0 +1,56 @@
+﻿@model IEnumerable<coreApparelProjectAPI2.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Units)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.OrderAmount)
+            </th>*@
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Units)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.OrderAmount)
+            </td>*@
+            <td>
+
+                <a asp-controller="Order" asp-action="Details" asp-route-id="@item.OrderId"><button type="button" class="btn btn-light">Details</button></a>||
+                <a asp-controller="Order" asp-action="Edit" asp-route-id="@item.OrderId"><button type="button" class="btn btn-light">Edit</button></a>||
+
+                <a asp-controller="Order" asp-action="Delete" asp-route-id="@item.OrderId"><button type="button" class="btn btn-light">Delete</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

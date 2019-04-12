@@ -1,0 +1,108 @@
+﻿@model coreApparelProjectAPI2.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+
+
+<h2>Details of the Product</h2>
+<hr/>
+<div class="card mb-4" style="max-width: 540px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="~/images/61mwDAPNf3L._UY500_.jpg" class="card-img" alt="..."><br />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Product Details</h5>
+                <div class="row" class="card-body">
+                    <div class="col-lg-4">
+                        &nbsp;
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="form-group">
+                            <label for="ProductId">ProductId</label>
+                            <div class="form-control">
+                                @Html.DisplayFor(m => m.ProductId)
+                            </div>
+                            @*<input type="text" class="form-control" asp-for="ProductId" />*@
+                            <br />
+                            <label for="ProductName">ProductName</label>
+                            <div class="form-control">
+                                @Html.DisplayFor(m => m.ProductName)
+                            </div>
+                            @*<input type="text" class="form-control" asp-for="ProductName">*@
+                        </div>
+                        <div class="form-group">
+                            <label for="ProductPrice">ProductPrice</label>
+                            <div class="form-control">
+                                @Html.DisplayFor(m => m.ProductPrice)
+                            </div>
+                            @*<input type="text" class="form-control" asp-for="ProductPrice">*@
+                        </div>
+                        <div class="form-group">
+                            <label for="ProductQuantity">ProductQuantity</label>
+                            <div class="form-control">
+                                @Html.DisplayFor(m => m.ProductQuantity)
+                            </div>
+                            @*<input type="text" class="form-control" asp-for="ProductQuantity">*@
+                        </div>
+                        @*<div class="form-group">
+                                <label for="ProductImage">ProductImage</label>
+                                <div class="form-control">
+                                    @Html.DisplayFor(m => m.ProductImage)
+                                </div>
+                                <input type="text" class="form-control" asp-for="ProductImage">
+                            </div>*@
+                        <div class="form-group">
+                            <label for="ProductSize">ProductSize</label>
+                            <div class="form-control">
+                                @Html.DisplayFor(m => m.ProductSize)
+                            </div>
+                            @*<input type="text" class="form-control" asp-for="ProductSize">*@
+                        </div>
+                        <div class="form-group">
+                            <label for="ProductDescription">ProductDescription</label>
+                            <div class="form-control">
+                                @Html.DisplayFor(m => m.ProductDescription)
+                            </div>
+                            @*<input type="text" class="form-control" asp-for="ProductDescription">*@
+                        </div>
+                        @*<div class="form-group">
+                            <label for="CategoryId">CategoryId</label>
+                            <div class="form-control">
+                                @Html.DisplayFor(m => m.CategoryId)
+                            </div>
+                        
+                        </div>
+                        <div class="form-group">
+                            <label for="VendorId">VendorId</label>
+                            <div class="form-control">
+                                @Html.DisplayFor(m => m.VendorId)
+                            </div>
+                           
+                        </div>
+                        <div class="form-group">
+                            <label for="BrandId">BrandId</label>
+                            <div class="form-control">
+                                @Html.DisplayFor(m => m.BrandId)
+                            </div>
+                           
+                        </div>*@
+                        <a asp-controller="Product" asp-action="Index"><button type="submit" class="btn btn-primary">BackToList</button></a>
+
+                    </div>
+                    @*<div class="col-lg-4">
+                            &nbsp;
+                        </div>*@
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

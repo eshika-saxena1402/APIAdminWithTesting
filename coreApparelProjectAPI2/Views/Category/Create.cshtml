@@ -1,0 +1,39 @@
+﻿@model coreApparelProjectAPI2.Models.Category
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Create new Category</h2>
+
+
+<hr />
+<div class="row">
+    <div class="col-lg-4">
+        &nbsp;
+    </div>
+    <div class="col-lg-4">
+        <form asp-action="Create" asp-controller="Category">
+            <input type="hidden" asp-for="CategoryId" />
+            <br />
+            <div class="form-group">
+                <label for="CategoryName">CategoryName</label>
+                <input type="text" class="form-control" placeholder="Enter Name" asp-for="CategoryName">
+
+            </div>
+            <div class="form-group">
+                <label for="CategoryDescription">CategoryDescription</label>
+                <input type="text" class="form-control" placeholder="Description" asp-for="CategoryDescription">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-controller="Category" asp-action="Index"><button type="submit" class="btn btn-primary">BackToList</button></a>
+
+        </form>
+    </div>
+    <div class="col-lg-4">
+        &nbsp;
+    </div>
+</div>
+

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<coreApparelProjectAPI2.Models.Vendor>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VendorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VendorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VendorEmail)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.VendorPhoneNo)
+            </th>*@
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorEmail)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.VendorPhoneNo)
+        </td>*@
+
+            <td>
+                <a asp-controller="Vendor" asp-action="Details" asp-route-id="@item.VendorId"><button type="button" class="btn btn-light">Details</button></a>||
+                <a asp-controller="Vendor" asp-action="Edit" asp-route-id="@item.VendorId"><button type="button" class="btn btn-light">Edit</button></a>||
+
+                <a asp-controller="Vendor" asp-action="Delete" asp-route-id="@item.VendorId"><button type="button" class="btn btn-light">Delete</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

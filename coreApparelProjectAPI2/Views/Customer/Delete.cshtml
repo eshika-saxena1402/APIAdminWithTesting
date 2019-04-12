@@ -1,0 +1,54 @@
+﻿@model coreApparelProjectAPI2.Models.Customer
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Delete Customer</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<hr />
+<div class="row">
+    <div class="col-lg-4">
+        &nbsp;
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <div class="form-group">
+
+
+                <input type="hidden" class="form-control" asp-for="CustomerId">
+            </div>
+            <div class="form-group">
+
+                <label for="CustomerName">CustomerName</label>
+                <input type="text" class="form-control" asp-for="CustomerName">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="text" class="form-control" asp-for="Email">
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber">PhoneNumber</label>
+                <input type="text" class="form-control" asp-for="PhoneNumber">
+            </div>
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                <input type="text" class="form-control" asp-for="Gender">
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="text" class="form-control" asp-for="Password">
+            </div>
+
+            <form asp-action="Delete" asp-controller="Customer">
+                <button type="submit" class="btn btn-primary">Delete</button>
+
+            </form>
+            <a asp-controller="Customer" asp-action="Index"><button type="submit" class="btn btn-primary">BackToList</button></a>
+        </div>
+        <div class="col-lg-4">
+            &nbsp;
+        </div>
+    </div>
