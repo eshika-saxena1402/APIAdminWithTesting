@@ -83,6 +83,7 @@ namespace ApperalStoreAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int? id, [FromBody]Customer c1)
         {
+          
             if (id != c1.CustomerId)
             {
                 return NotFound();

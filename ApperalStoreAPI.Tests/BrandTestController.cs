@@ -70,18 +70,18 @@ namespace ApperalStoreAPI.Tests
             var data = await controller.Post(brand);
             Assert.IsType<CreatedAtActionResult>(data);
         }
-        [Fact]
-        public async void Task_AddBrand_Return_BadRequest()
-        {
-            var controller = new BrandController(context);
-            var brand = new Brand()
-            {
-                BrandName = "Reebok",
-                BrandDescription = "Reebok Desc"
-            };
-            var data = await controller.Post(brand);
-            Assert.IsType<BadRequestResult>(data);
-        }
+        //[Fact]
+        //public async void Task_AddBrand_Return_BadRequest()
+        //{
+        //    var controller = new BrandController(context);
+        //    var brand = new Brand()
+        //    {
+        //        BrandName = "Reebok",
+        //        BrandDescription = "Reebok Desc"
+        //    };
+        //    var data = await controller.Post(brand);
+        //    Assert.IsType<BadRequestResult>(data);
+        //}
         [Fact]
         public async void Task_DeleteBrand_Retun_OkResult()
         {

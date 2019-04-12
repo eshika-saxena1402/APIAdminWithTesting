@@ -82,28 +82,28 @@ namespace ApperalStoreAPI.Tests
             var data = await controller.Post(cat);
             Assert.IsType<CreatedAtActionResult>(data);
         }
-        [Fact]
-        public async void Task_AddCategory_Return_BadRequest()
-        {
-            var controller = new CustomerController(context);
-            var cat = new Customer()
-            {
-                CustomerFirstName = "Akash",
-                CustomerLastName = "Singh",
-                UserName = "Akki",
-                Email = "akash@gmail.com",
-                PhoneNumber = 9045712248,
-                AlternatePhoneNumber = 9411971345,
-                Address = "Sector-62",
-                State = "Uttar Pradesh",
-                Country = "India",
-                ZipCode = 14421,
-                Gender = "Male",
-                Password = "akash"
-            };
-            var data = await controller.Post(cat);
-            Assert.IsType<BadRequestResult>(data);
-        }
+        //[Fact]
+        //public async void Task_AddCategory_Return_BadRequest()
+        //{
+        //    var controller = new CustomerController(context);
+        //    var cat = new Customer()
+        //    {
+        //        CustomerFirstName = "Akash",
+        //        CustomerLastName = "Singh",
+        //        UserName = "Akki",
+        //        Email = "akash@gmail.com",
+        //        PhoneNumber = 9045712248,
+        //        AlternatePhoneNumber = 9411971345,
+        //        Address = "Sector-62",
+        //        State = "Uttar Pradesh",
+        //        Country = "India",
+        //        ZipCode = 14421,
+        //        Gender = "Male",
+        //        Password = "akash"
+        //    };
+        //    var data = await controller.Post(cat);
+        //    Assert.IsType<BadRequestResult>(data);
+        //}
         [Fact]
         public async void Task_DeleteCategory_Retun_OkResult()
         {

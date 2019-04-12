@@ -72,18 +72,18 @@ namespace ApperalStoreAPI.Tests
             var data = await controller.Post(cat);
             Assert.IsType<CreatedAtActionResult>(data);
         }
-        [Fact]
-        public async void Task_AddCategory_Return_BadRequest()
-        {
-            var controller = new CategoryController(context);
-            var cat = new Category()
-            {
-                CategoryName = "Brochure",
-                CategoryDescription = "Brochure Desc"
-            };
-            var data = await controller.Post(cat);
-            Assert.IsType<BadRequestResult>(data);
-        }
+        //[Fact]
+        //public async void Task_AddCategory_Return_BadRequest()
+        //{
+        //    var controller = new CategoryController(context);
+        //    var cat = new Category()
+        //    {
+        //        CategoryName = "Brochure",
+        //        CategoryDescription = "Brochure Desc"
+        //    };
+        //    var data = await controller.Post(cat);
+        //    Assert.IsType<BadRequestResult>(data);
+        //}
         [Fact]
         public async void Task_DeleteCategory_Retun_OkResult()
         {

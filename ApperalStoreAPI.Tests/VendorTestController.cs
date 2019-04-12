@@ -72,19 +72,19 @@ namespace ApperalStoreAPI.Tests
             var data = await controller.Post(user);
             Assert.IsType<CreatedAtActionResult>(data);
         }
-        [Fact]
-        public async void Task_Add_InvalidData_Return_BadRequest()
-        {
-            var controller = new VendorController(context);
-            var user = new Vendor()
-            {
-                VendorName = "Eshika123",
-                VendorEmail = "e@gmail.com",
-                VendorPhoneNo = 7599437873
-            };
-            var data = await controller.Post(user);
-            Assert.IsType<BadRequestResult>(data);
-        }
+        //[Fact]
+        //public async void Task_Add_InvalidData_Return_BadRequest()
+        //{
+        //    var controller = new VendorController(context);
+        //    var user = new Vendor()
+        //    {
+        //        VendorName = "Eshika123",
+        //        VendorEmail = "e@gmail.com",
+        //        VendorPhoneNo = 7599437873
+        //    };
+        //    var data = await controller.Post(user);
+        //    Assert.IsType<BadRequestResult>(data);
+        //}
         [Fact]
         public async void Task_delete_Return_okResult()
         {
