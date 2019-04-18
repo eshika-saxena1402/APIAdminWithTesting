@@ -17,10 +17,14 @@ namespace ApperalStoreAPI.Models
 
         }
         public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Manager> Managers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<StripeSettings> StripeSettings { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
